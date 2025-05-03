@@ -174,6 +174,23 @@ following to your configuration file::
 You can make the email address whatever you want, but your mail server
 requires that the ``yoursite.com`` part actually exists.
 
+Subject Sanitization
+-------------------
+
+If you're experiencing issues with UTF-8 characters in email subjects, you can enable subject sanitization to remove unwanted characters::
+
+  sanitize-subject = True
+
+By default, this will retain only Russian, English, and Kazakh letters, digits, spaces, and common punctuation. You can customize which characters to keep by modifying the sanitization pattern::
+
+  subject-sanitization-regex = [^a-zA-Zа-яА-Я0-9\s.,!?:;()\[\]{}"'«»\-–—]
+
+This regex pattern specifies which characters to remove (the ``^`` at the beginning means "not these characters"). You can adjust it to include characters from other languages as needed.
+
+To use this feature, you'll also need to set up the post-processing hook::
+
+  post-process = rss2email.post_process.sanitize_subject sanitize
+
 
 SMTP
 ----

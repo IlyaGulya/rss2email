@@ -216,6 +216,7 @@ class Feed (object):
         'links_after_each_paragraph',
         'use_smtp',
         'smtp_ssl',
+        'sanitize_subject',
         ]
 
     _integer_attributes = [
